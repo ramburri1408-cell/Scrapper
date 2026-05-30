@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  discover-companies:
+  discover:
     runs-on: ubuntu-latest
 
     steps:
@@ -14,16 +14,11 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install dependencies
+      - name: Show files
         run: |
-          pip install requests
+          pwd
+          ls -R
 
-      - name: Run company discovery
+      - name: Run scraper
         run: |
-          python agent/company_discovery.py
-
-      - name: Upload companies artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: companies-json
-          path: data/companies.json
+          python Company_Discovery.py
